@@ -36,4 +36,26 @@ public class EmployeeServiceIMPL implements EmployeeService {
             return "Employee ID already exists.";
         }
     }
+
+    @Override
+    public String updateEmployee(EmployeeDTO employeeDTO) {
+        if(employeeRepo.existsById(employeeDTO.getEmployeeID())){
+            Employee employee = employeeRepo.getById(employeeDTO.getEmployeeID());
+            employee.setName(employeeDTO.getName());
+            employee.setAddress(employeeDTO.getAddress());
+            employee.setSalary(employeeDTO.getSalary());
+            employee.setContactNumber(employeeDTO.getContactNumber());
+            employee.setNic(employeeDTO.getNic());
+            employee.setActiveState(employeeDTO.isActiveState());
+
+            employeeRepo.save(employee);
+            return "Updated";
+
+        }else{
+            System.out.println("No employee found for that ID.");
+            return "No employee found for that ID.";
+        }
+    }
+
+
 }

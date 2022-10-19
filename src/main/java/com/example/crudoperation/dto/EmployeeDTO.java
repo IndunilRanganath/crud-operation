@@ -1,10 +1,7 @@
 package com.example.crudoperation.dto;
-
 import org.hibernate.annotations.Type;
-
 import javax.persistence.Column;
 import java.util.ArrayList;
-
 public class EmployeeDTO {
     private int  employeeID;
     private String name;
