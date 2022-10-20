@@ -5,6 +5,8 @@ import com.example.crudoperation.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/employee")
 @CrossOrigin
@@ -34,6 +36,12 @@ public class EmployeeController {
     }
 
 
-
+    @DeleteMapping(
+            path = "/delete/{id}"
+    )
+    public String deleteEmployee(@PathVariable(value = "id") int employeeID){
+        String deleted = employeeService.deleteEmployee(employeeID);
+        return deleted;
+    }
 
 }

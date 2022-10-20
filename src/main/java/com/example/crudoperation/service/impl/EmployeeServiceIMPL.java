@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -77,4 +78,13 @@ public class EmployeeServiceIMPL implements EmployeeService {
         }
     }
 
+    @Override
+    public String deleteEmployee(int employeeID) {
+        if (employeeRepo.existsById(employeeID)){
+            employeeRepo.deleteById(employeeID);
+            return "Deleted.";
+        }else {
+            return "No Employee found for this ID.";
+        }
+    }
 }
