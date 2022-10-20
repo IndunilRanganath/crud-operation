@@ -7,4 +7,5 @@ public interface EmployeeService {
 
     String updateEmployee(EmployeeDTO employeeDTO);
 
+    EmployeeDTO getEmployeeByID(int employeeID);
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 
@@ -57,5 +58,23 @@ public class EmployeeServiceIMPL implements EmployeeService {
         }
     }
 
+    @Override
+    public EmployeeDTO getEmployeeByID(int employeeID) {
+        Optional<Employee> employee = employeeRepo.findById(employeeID);
+        if(employee.isPresent()){
+            EmployeeDTO employeeDTO = new EmployeeDTO(
+              employee.get().getEmployeeID(),
+              employee.get().getName(),
+              employee.get().getAddress(),
+              employee.get().getSalary(),
+              employee.get().getContactNumber(),
+              employee.get().getNic(),
+              employee.get().isActiveState()
+            );
+            return employeeDTO;
+        }else {
+            return null;
+        }
+    }
 
 }
